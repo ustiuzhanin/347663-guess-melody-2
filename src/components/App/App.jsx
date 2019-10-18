@@ -7,5 +7,5 @@ export default function App() {
     mistakes: 3
   };
 
-  return <Welcome rules={rules} />;
+  return <Welcome time={rules.time} mistakes={rules.mistakes} />;
 }

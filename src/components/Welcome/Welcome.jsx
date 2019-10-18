@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Welcome(props) {
-  const {time, mistakes} = props.rules;
+  const {time, mistakes} = props;
   return (
     <section className='welcome'>
       <div className='welcome__logo'>
@@ -27,8 +27,12 @@ export default function Welcome(props) {
   );
 }
 
+Welcome.defaultProps = {
+  time: 5,
+  mistakes: 3
+};
+
 Welcome.propTypes = {
-  rules: PropTypes.object.isRequired,
   time: PropTypes.number.isRequired,
   mistakes: PropTypes.number.isRequired
 };
