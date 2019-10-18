@@ -7,5 +7,16 @@ export default function App() {
     mistakes: 3
   };
 
-  return <Welcome time={rules.time} mistakes={rules.mistakes} />;
+  const onLaunchBtnClick = () => {
+    /* eslint-disable no-console */
+    console.log(`sss`);
+  };
+
+  return (
+    <Welcome
+      time={rules.time}
+      mistakes={rules.mistakes}
+      onClick={onLaunchBtnClick}
+    />
+  );
 }
