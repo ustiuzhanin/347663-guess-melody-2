@@ -30,7 +30,10 @@ export default function Welcome(props) {
 
 Welcome.defaultProps = {
   time: 5,
-  mistakes: 3
+  mistakes: 3,
+  onClick: () => {
+    // TODO: prints an error if onClick wasn't passed
+  }
 };
 
 Welcome.propTypes = {

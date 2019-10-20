@@ -8,8 +8,7 @@ export default function App() {
   };
 
   const onLaunchBtnClick = () => {
-    /* eslint-disable no-console */
-    console.log(`sss`);
+    // TODO: lauch the game on click
   };
 
   return (
