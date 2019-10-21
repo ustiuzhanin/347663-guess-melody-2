@@ -7,5 +7,15 @@ export default function App() {
     mistakes: 3
   };
 
-  return <Welcome time={rules.time} mistakes={rules.mistakes} />;
+  const onLaunchBtnClick = () => {
+    // TODO: lauch the game on click
+  };
+
+  return (
+    <Welcome
+      time={rules.time}
+      mistakes={rules.mistakes}
+      onClick={onLaunchBtnClick}
+    />
+  );
 }
