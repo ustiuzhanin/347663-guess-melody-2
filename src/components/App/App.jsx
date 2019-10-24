@@ -68,6 +68,10 @@ export default class App extends PureComponent {
   }
 }
 
+App.defaultProps = {
+  settings: {gameTime: 5, errorCount: 3}
+};
+
 App.propTypes = {
   settings: PropTypes.shape({
     gameTime: PropTypes.number.isRequired,
