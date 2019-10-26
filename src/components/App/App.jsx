@@ -16,6 +16,7 @@ export default class App extends PureComponent {
         />
       );
     }
+
     const {questions} = props;
     const currentQuestion = questions[question];
 
@@ -45,23 +46,24 @@ export default class App extends PureComponent {
     super(props);
 
     this.state = {
-      question: -1
+      question: -1,
+      userAnswer: null
     };
   }
 
   render() {
     const {question} = this.state;
     const {questions} = this.props;
-    return App.getScreen(question, this.props, (usrAnswer) => {
-      // eslint-disable-next-line no-console
-      console.log(usrAnswer);
 
+    return App.getScreen(question, this.props, (usrAnswer) => {
       this.setState((prevState) => {
         const nextIndex = prevState.question + 1;
         const isEnd = nextIndex >= questions.length;
 
         return {
-          question: !isEnd ? nextIndex : -1
+          question: !isEnd ? nextIndex : -1,
+          // TODO handle user's respond
+          userAnswer: usrAnswer
         };
       });
     });

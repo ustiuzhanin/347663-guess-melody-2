@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export default function ArtistQuestionScreen(props) {
   const {screenIndex, question, onAnswer} = props;
   const {answers} = question;
+
   return (
     <section className='game game--artist'>
       <header className='game__header'>

@@ -9,9 +9,11 @@ export default class GenreQuestionScreen extends PureComponent {
       userAnswer: []
     };
   }
+
   render() {
     const {screenIndex, question, onAnswer} = this.props;
     const {genre, answers} = question;
+
     const btnClickHandler = (evt) => {
       const answerValue = evt.target.value;
 
