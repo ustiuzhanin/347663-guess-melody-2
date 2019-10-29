@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import AudioPlayer from '../AudioPlayer/AudioPlayer.jsx';
 import PropTypes from 'prop-types';
 
 export default class GenreQuestionScreen extends PureComponent {
@@ -6,7 +7,8 @@ export default class GenreQuestionScreen extends PureComponent {
     super(props);
 
     this.state = {
-      userAnswer: []
+      userAnswer: [],
+      activePlayer: -1
     };
   }
 
@@ -83,19 +85,21 @@ export default class GenreQuestionScreen extends PureComponent {
               evt.preventDefault();
 
               onAnswer(this.state.userAnswer);
-              this.setState({userAnswer: []});
+              this.setState({userAnswer: [], activePlayer: -1});
             }}
           >
             {answers.map((answer, i) => {
               return (
                 <div key={`${screenIndex}-answer-${i}`} className='track'>
-                  <button
-                    className='track__button track__button--play'
-                    type='button'
-                  ></button>
-                  <div className='track__status'>
-                    <audio></audio>
-                  </div>
+                  <AudioPlayer
+                    src={answer.src}
+                    isPlaying={i === this.state.activePlayer}
+                    onPlayButtonClick={() =>
+                      this.setState({
+                        activePlayer: this.state.activePlayer === i ? -1 : i
+                      })
+                    }
+                  />
                   <div className='game__answer'>
                     <input
                       className='game__input visually-hidden'

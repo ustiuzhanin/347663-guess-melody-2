@@ -1,17 +1,20 @@
 import React from 'react';
 import GenreQuestionScreen from './GenreQuestionScreen.jsx';
-import renderer from 'react-test-renderer';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 test(`GenreQuestionScreen's snapshot`, () => {
-  const tree = renderer
-    .create(
-        <GenreQuestionScreen
-          screenIndex={0}
-          question={{genre: `folk`, answers: [{}, {}]}}
-          onAnswer={jest.fn()}
-        />
-    )
-    .toJSON();
+  const renderer = new ShallowRenderer();
+  renderer.render(
+      <GenreQuestionScreen
+        screenIndex={0}
+        question={{
+          genre: `folk`,
+          answers: [{genre: `rock`, src: `url1`}, {genre: `pop`, src: `url2`}]
+        }}
+        onAnswer={jest.fn()}
+      />
+  );
+  const result = renderer.getRenderOutput();
 
-  expect(tree).toMatchSnapshot();
+  expect(result).toMatchSnapshot();
 });

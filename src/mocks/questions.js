@@ -4,19 +4,19 @@ export const questions = [
     genre: `rock`,
     answers: [
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/c/cb/Himno_Nacional_Mexicano.ogg`,
         genre: `rock`
       },
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/9/99/Istikl%C3%A2l_Marsi_instrumetal.ogg`,
         genre: `pop`
       },
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/c/cb/Himno_Nacional_Mexicano.ogg`,
         genre: `jazz`
       },
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/9/99/Istikl%C3%A2l_Marsi_instrumetal.ogg`,
         genre: `rock`
       }
     ]
@@ -26,19 +26,19 @@ export const questions = [
     genre: `folk`,
     answers: [
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/9/99/Istikl%C3%A2l_Marsi_instrumetal.ogg`,
         genre: `rock`
       },
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/c/cb/Himno_Nacional_Mexicano.ogg`,
         genre: `pop`
       },
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/9/99/Istikl%C3%A2l_Marsi_instrumetal.ogg`,
         genre: `jazz`
       },
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/c/cb/Himno_Nacional_Mexicano.ogg`,
         genre: `rock`
       }
     ]
@@ -47,7 +47,7 @@ export const questions = [
     type: `artist`,
     song: {
       artist: `Jim Beam`,
-      src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`
+      src: `https://upload.wikimedia.org/wikipedia/commons/c/cb/Himno_Nacional_Mexicano.ogg`
     },
     answers: [
       {
@@ -68,7 +68,7 @@ export const questions = [
     type: `artist`,
     song: {
       artist: `Jack Daniels`,
-      src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`
+      src: `https://upload.wikimedia.org/wikipedia/commons/9/99/Istikl%C3%A2l_Marsi_instrumetal.ogg`
     },
     answers: [
       {

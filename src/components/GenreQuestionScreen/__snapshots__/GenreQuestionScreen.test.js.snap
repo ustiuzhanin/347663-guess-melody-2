@@ -92,15 +92,11 @@ exports[`GenreQuestionScreen's snapshot 1`] = `
       <div
         className="track"
       >
-        <button
-          className="track__button track__button--play"
-          type="button"
+        <AudioPlayer
+          isPlaying={false}
+          onPlayButtonClick={[Function]}
+          src="url1"
         />
-        <div
-          className="track__status"
-        >
-          <audio />
-        </div>
         <div
           className="game__answer"
         >
@@ -123,15 +119,11 @@ exports[`GenreQuestionScreen's snapshot 1`] = `
       <div
         className="track"
       >
-        <button
-          className="track__button track__button--play"
-          type="button"
+        <AudioPlayer
+          isPlaying={false}
+          onPlayButtonClick={[Function]}
+          src="url2"
         />
-        <div
-          className="track__status"
-        >
-          <audio />
-        </div>
         <div
           className="game__answer"
         >
