@@ -44,12 +44,12 @@ export default class AudioPlayer extends Component {
       });
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     const audio = this.audioRef.current;
 
-    if (prevProps.src !== this.props.src) {
-      audio.src = this.props.src;
-    }
+    // if (prevProps.src !== this.props.src) {
+    //   audio.src = this.props.src;
+    // }
 
     if (this.props.isPlaying) {
       audio.play();

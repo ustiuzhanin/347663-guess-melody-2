@@ -62,6 +62,7 @@ export default class ArtistQuestionScreen extends Component {
           <div className='game__track'>
             <div className='track'>
               <AudioPlayer
+                key={song.src}
                 src={song.src}
                 isPlaying={this.state.isPlaying}
                 onPlayButtonClick={() =>
