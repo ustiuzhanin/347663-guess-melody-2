@@ -89,15 +89,11 @@ exports[`ArtistQuestionScreen's shapshot 1`] = `
       <div
         className="track"
       >
-        <button
-          className="track__button track__button--play"
-          type="button"
+        <AudioPlayer
+          isPlaying={false}
+          onPlayButtonClick={[Function]}
+          src="str"
         />
-        <div
-          className="track__status"
-        >
-          <audio />
-        </div>
       </div>
     </div>
     <form

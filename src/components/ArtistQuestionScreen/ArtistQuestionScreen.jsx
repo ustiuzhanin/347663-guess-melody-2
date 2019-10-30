@@ -1,8 +1,8 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import AudioPlayer from '../AudioPlayer/AudioPlayer.jsx';
 import PropTypes from 'prop-types';
 
-export default class ArtistQuestionScreen extends PureComponent {
+export default class ArtistQuestionScreen extends Component {
   constructor(props) {
     super(props);
 

@@ -23,7 +23,10 @@ it(`check the playing status`, () => {
   expect(audioplayer.state().isPlaying).toBeFalsy();
 
   const playBtn = audioplayer.find(`button`);
-  playBtn.simulate(`click`);
 
+  playBtn.simulate(`click`);
   expect(audioplayer.state().isPlaying).toBeTruthy();
+
+  playBtn.simulate(`click`);
+  expect(audioplayer.state().isPlaying).toBeFalsy();
 });

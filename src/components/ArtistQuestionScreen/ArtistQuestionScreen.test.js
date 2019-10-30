@@ -1,17 +1,18 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import ArtistQuestionScreen from './ArtistQuestionScreen.jsx';
 
 test(`ArtistQuestionScreen's shapshot`, () => {
-  const tree = renderer
-    .create(
-        <ArtistQuestionScreen
-          screenIndex={0}
-          onAnswer={jest.fn()}
-          question={{answers: [{}]}}
-        />
-    )
-    .toJSON();
+  const renderer = new ShallowRenderer();
+  renderer.render(
+      <ArtistQuestionScreen
+        screenIndex={0}
+        onAnswer={jest.fn()}
+        question={{answers: [{}], song: {artist: `str`, src: `str`}}}
+      />
+  );
 
-  expect(tree).toMatchSnapshot();
+  const result = renderer.getRenderOutput();
+
+  expect(result).toMatchSnapshot();
 });

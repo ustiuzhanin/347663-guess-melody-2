@@ -1,14 +1,15 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-export default class AudioPlayer extends PureComponent {
+export default class AudioPlayer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       isPlaying: props.isPlaying,
       isLoading: true,
-      progress: 0
+      progress: 0,
+      audio: null
     };
 
     this.audioRef = React.createRef();
@@ -43,9 +44,12 @@ export default class AudioPlayer extends PureComponent {
       });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const audio = this.audioRef.current;
-    // audio.src = this.props.src;
+
+    if (prevProps.src !== this.props.src) {
+      audio.src = this.props.src;
+    }
 
     if (this.props.isPlaying) {
       audio.play();

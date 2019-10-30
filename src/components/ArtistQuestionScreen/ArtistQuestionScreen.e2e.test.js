@@ -14,7 +14,8 @@ it(`check the type of user's answer data`, () => {
       <ArtistQuestionScreen
         screenIndex={2}
         question={{
-          answers: [{artist: `Snow`, picture: `http://placehold.it/134x134`}]
+          answers: [{artist: `Snow`, picture: `http://placehold.it/134x134`}],
+          song: {artist: `str`, src: `str`}
         }}
         onAnswer={getUserAnswer}
       />
