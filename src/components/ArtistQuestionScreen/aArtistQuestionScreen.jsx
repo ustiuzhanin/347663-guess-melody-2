@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import AudioPlayer from '../AudioPlayer/AudioPlayer.jsx';
 import PropTypes from 'prop-types';
 
-export default class ArtistQuestionScreen extends Component {
+export default class ArtistQuestionScreen extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -12,7 +12,7 @@ export default class ArtistQuestionScreen extends Component {
   }
 
   render() {
-    const {screenIndex, question, onAnswer} = this.props;
+    const {question, onAnswer} = this.props;
     const {answers, song} = question;
     return (
       <section className='game game--artist'>
@@ -75,7 +75,7 @@ export default class ArtistQuestionScreen extends Component {
           <form className='game__artist'>
             {answers.map((answer, i) => {
               return (
-                <div key={`${screenIndex}${i}`} className='artist'>
+                <div key={`answer-${i}`} className='artist'>
                   <input
                     className='artist__input visually-hidden'
                     type='radio'
@@ -106,7 +106,7 @@ export default class ArtistQuestionScreen extends Component {
 }
 
 ArtistQuestionScreen.propTypes = {
-  screenIndex: PropTypes.number.isRequired,
+  // screenIndex: PropTypes.number.isRequired,
   onAnswer: PropTypes.func.isRequired,
   question: PropTypes.shape({
     answers: PropTypes.array.isRequired,
