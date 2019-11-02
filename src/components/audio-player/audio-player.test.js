@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import AudioPlayer from './AudioPlayer.jsx';
+import AudioPlayer from './audio-player.jsx';
 
 test(`AudioPlayer snapshot's`, () => {
   const tree = renderer

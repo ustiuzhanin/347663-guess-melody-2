@@ -1,5 +1,5 @@
 import React from 'react';
-import Welcome from './Welcome.jsx';
+import Welcome from './welcome.jsx';
 import renderer from 'react-test-renderer';
 
 test(`Welcome's snapshot`, () => {

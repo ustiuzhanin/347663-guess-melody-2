@@ -1,19 +1,17 @@
 import React from 'react';
-import GenreQuestionScreen from './GenreQuestionScreen.jsx';
 import ShallowRenderer from 'react-test-renderer/shallow';
+import ArtistQuestionScreen from './artist-question-screen.jsx';
 
-test(`GenreQuestionScreen's snapshot`, () => {
+test(`ArtistQuestionScreen's shapshot`, () => {
   const renderer = new ShallowRenderer();
   renderer.render(
-      <GenreQuestionScreen
+      <ArtistQuestionScreen
         screenIndex={0}
-        question={{
-          genre: `folk`,
-          answers: [{genre: `rock`, src: `url1`}, {genre: `pop`, src: `url2`}]
-        }}
         onAnswer={jest.fn()}
+        question={{answers: [{}], song: {artist: `str`, src: `str`}}}
       />
   );
+
   const result = renderer.getRenderOutput();
 
   expect(result).toMatchSnapshot();

@@ -1,5 +1,5 @@
 import React from 'react';
-import App from './App.jsx';
+import App from './app.jsx';
 import renderer from 'react-test-renderer';
 
 test(`App's snapshot`, () => {

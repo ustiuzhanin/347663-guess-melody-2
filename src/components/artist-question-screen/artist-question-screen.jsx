@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import AudioPlayer from '../AudioPlayer/AudioPlayer.jsx';
+import AudioPlayer from '../audio-player/audio-player.jsx';
 import PropTypes from 'prop-types';
 
 export default class ArtistQuestionScreen extends PureComponent {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import ArtistQuestionScreen from './ArtistQuestionScreen.jsx';
+import ArtistQuestionScreen from './artist-question-screen.jsx';
 
 Enzyme.configure({adapter: new Adapter()});
 

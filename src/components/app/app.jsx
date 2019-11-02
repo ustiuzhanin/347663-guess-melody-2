@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
-import Welcome from '../Welcome/Welcome.jsx';
-import ArtistQuestionScreen from '../ArtistQuestionScreen/ArtistQuestionScreen.jsx';
-import GenreQuestionScreen from '../GenreQuestionScreen/GenreQuestionScreen.jsx';
+import Welcome from '../welcome/welcome.jsx';
+import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen.jsx';
+import GenreQuestionScreen from '../genre-questionScreen/genre-question-screen.jsx';
 import PropTypes from 'prop-types';
 
 export default class App extends PureComponent {
