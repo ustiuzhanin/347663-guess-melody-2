@@ -1,10 +1,13 @@
 import React, {PureComponent} from 'react';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer';
+
 import Welcome from '../welcome/welcome.jsx';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen.jsx';
 import GenreQuestionScreen from '../genre-questionScreen/genre-question-screen.jsx';
 import PropTypes from 'prop-types';
 
-export default class App extends PureComponent {
+class App extends PureComponent {
   static getScreen(question, props, onUserAnswer) {
     if (question === -1) {
       const {errorCount, gameTime} = props.settings;
@@ -12,7 +15,7 @@ export default class App extends PureComponent {
         <Welcome
           time={gameTime}
           errorCount={errorCount}
-          onStartButtonClick={onUserAnswer}
+          onStartButtonClick={props.onWelcomeClick}
         />
       );
     }
@@ -81,3 +84,23 @@ App.propTypes = {
   }).isRequired,
   questions: PropTypes.array.isRequired
 };
+
+const mapStateToProps = (state, ownProps) =>
+  Object.assign({}, ownProps, {
+    step: state.step,
+    errorCount: state.errorCount
+  });
+
+const mapDispatchToProps = (dispatch) => ({
+  onWelcomeClick: () => {
+    console.log(`ss`);
+    dispatch(ActionCreator.incrementStep());
+  }
+});
+
+export {App};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);
