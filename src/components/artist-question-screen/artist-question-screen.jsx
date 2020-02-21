@@ -80,11 +80,11 @@ export default class ArtistQuestionScreen extends PureComponent {
                     className='artist__input visually-hidden'
                     type='radio'
                     name='answer'
-                    value={`artist-${i}`}
+                    value={`${i}`}
                     id={`answer-${i + 1}`}
                     onClick={(evt) => {
                       this.setState({isPlaying: false});
-                      onAnswer(evt.target.value);
+                      onAnswer(+evt.target.value);
                     }}
                   />
                   <label className='artist__name' htmlFor={`answer-${i + 1}`}>

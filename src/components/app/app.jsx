@@ -8,20 +8,29 @@ import GenreQuestionScreen from '../genre-questionScreen/genre-question-screen.j
 import PropTypes from 'prop-types';
 
 class App extends PureComponent {
-  static getScreen(question, props, onUserAnswer) {
-    if (question === -1) {
-      const {errorCount, gameTime} = props.settings;
+  getScreen(question) {
+    const {maxErrors, gameTime} = this.props.settings;
+    const {
+      questions,
+      errorCount,
+      onUserAnswer,
+      resetProgress,
+      onWelcomeScreenClick
+    } = this.props;
+
+    const currentQuestion = questions[question];
+
+    if (!currentQuestion) {
+      resetProgress();
+
       return (
         <Welcome
           time={gameTime}
-          errorCount={errorCount}
-          onStartButtonClick={props.onWelcomeClick}
+          errorCount={maxErrors}
+          onStartButtonClick={onWelcomeScreenClick}
         />
       );
     }
-
-    const {questions} = props;
-    const currentQuestion = questions[question];
 
     switch (currentQuestion.type) {
       case `genre`:
@@ -29,7 +38,9 @@ class App extends PureComponent {
           <GenreQuestionScreen
             screenIndex={question}
             question={currentQuestion}
-            onAnswer={onUserAnswer}
+            onAnswer={(answer) =>
+              onUserAnswer(answer, currentQuestion, errorCount, maxErrors)
+            }
           />
         );
       case `artist`:
@@ -37,7 +48,9 @@ class App extends PureComponent {
           <ArtistQuestionScreen
             screenIndex={question}
             question={currentQuestion}
-            onAnswer={onUserAnswer}
+            onAnswer={(answer) =>
+              onUserAnswer(answer, currentQuestion, errorCount, maxErrors)
+            }
           />
         );
     }
@@ -45,44 +58,28 @@ class App extends PureComponent {
     return null;
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      question: -1,
-      userAnswer: null
-    };
-  }
-
   render() {
-    const {question} = this.state;
-    const {questions} = this.props;
+    const {step} = this.props;
 
-    return App.getScreen(question, this.props, (usrAnswer) => {
-      this.setState((prevState) => {
-        const nextIndex = prevState.question + 1;
-        const isEnd = nextIndex >= questions.length;
-
-        return {
-          question: !isEnd ? nextIndex : -1,
-          // TODO handle user's respond
-          userAnswer: usrAnswer
-        };
-      });
-    });
+    return this.getScreen(step);
   }
 }
 
 App.defaultProps = {
-  settings: {gameTime: 5, errorCount: 3}
+  settings: {gameTime: 5, maxErrors: 3}
 };
 
 App.propTypes = {
   settings: PropTypes.shape({
     gameTime: PropTypes.number.isRequired,
-    errorCount: PropTypes.number.isRequired
+    maxErrors: PropTypes.number.isRequired
   }).isRequired,
-  questions: PropTypes.array.isRequired
+  questions: PropTypes.array.isRequired,
+  errorCount: PropTypes.number.isRequired,
+  onUserAnswer: PropTypes.func.isRequired,
+  resetProgress: PropTypes.func.isRequired,
+  onWelcomeScreenClick: PropTypes.func.isRequired,
+  step: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state, ownProps) =>
@@ -92,9 +89,17 @@ const mapStateToProps = (state, ownProps) =>
   });
 
 const mapDispatchToProps = (dispatch) => ({
-  onWelcomeClick: () => {
-    console.log(`ss`);
+  onWelcomeScreenClick: () => {
     dispatch(ActionCreator.incrementStep());
+  },
+  resetProgress: () => {
+    dispatch(ActionCreator.resetStep());
+  },
+  onUserAnswer: (userAnswer, question, mistakes, maxMistakes) => {
+    dispatch(ActionCreator.incrementStep());
+    dispatch(
+        ActionCreator.incrementErrors(userAnswer, question, mistakes, maxMistakes)
+    );
   }
 });
 

@@ -17,7 +17,7 @@ export default class GenreQuestionScreen extends PureComponent {
     const {genre, answers} = question;
 
     const btnClickHandler = (evt) => {
-      const answerValue = evt.target.value;
+      const answerValue = +evt.target.value;
 
       if (evt.target.checked) {
         this.setState((prevState) => {
@@ -105,7 +105,7 @@ export default class GenreQuestionScreen extends PureComponent {
                       className='game__input visually-hidden'
                       type='checkbox'
                       name='answer'
-                      value={`answer-${i}`}
+                      value={`${i}`}
                       id={`answer-${i + 1}`}
                       onClick={(e) => {
                         btnClickHandler(e);

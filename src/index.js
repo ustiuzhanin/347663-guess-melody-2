@@ -6,10 +6,15 @@ import ReactDOM from 'react-dom';
 import {reducer} from './reducer';
 import {questions} from './mocks/questions';
 import {settings} from './mocks/settings';
-import App from './components/App/App.jsx';
+import App from './components/app/app.jsx';
 
 const init = (gameQuestions) => {
-  const store = createStore(reducer);
+  const store = createStore(
+      reducer,
+      window.__REDUX_DEVTOOLS_EXTENSION__
+        ? window.__REDUX_DEVTOOLS_EXTENSION__()
+        : (f) => f
+  );
 
   ReactDOM.render(
       <Provider store={store}>
