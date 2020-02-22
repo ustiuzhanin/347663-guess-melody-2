@@ -5,6 +5,7 @@ import {ActionCreator} from '../../reducer';
 import Welcome from '../welcome/welcome.jsx';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen.jsx';
 import GenreQuestionScreen from '../genre-questionScreen/genre-question-screen.jsx';
+import ErrorWidget from '../error-widget/error-widget.jsx';
 import PropTypes from 'prop-types';
 
 class App extends PureComponent {
@@ -58,10 +59,42 @@ class App extends PureComponent {
     return null;
   }
 
-  render() {
-    const {step} = this.props;
+  renderErrors(errors) {
+    return Array.from({length: errors}).map((e, i) => (
+      <ErrorWidget key={`error-${i}`} />
+    ));
+  }
 
-    return this.getScreen(step);
+  render() {
+    const {step, errorCount} = this.props;
+
+    return (
+      <section className='game'>
+        <header
+          style={{display: step === -1 ? `none` : `flex`}}
+          className='game__header'
+        >
+          <a className='game__back' href='#'>
+            <span className='visually-hidden'>Сыграть ещё раз</span>
+            <img
+              className='game__logo'
+              src='img/melody-logo-ginger.png'
+              alt='Угадай мелодию'
+            />
+          </a>
+
+          <div className='timer__value'>
+            <span className='timer__mins'>05</span>
+            <span className='timer__dots'>:</span>
+            <span className='timer__secs'>00</span>
+          </div>
+
+          <div className='game__mistakes'>{this.renderErrors(errorCount)}</div>
+        </header>
+
+        {this.getScreen(step)}
+      </section>
+    );
   }
 }
 
@@ -98,7 +131,7 @@ const mapDispatchToProps = (dispatch) => ({
   onUserAnswer: (userAnswer, question, mistakes, maxMistakes) => {
     dispatch(ActionCreator.incrementStep());
     dispatch(
-        ActionCreator.incrementErrors(userAnswer, question, mistakes, maxMistakes)
+      ActionCreator.incrementErrors(userAnswer, question, mistakes, maxMistakes)
     );
   }
 });
@@ -106,6 +139,6 @@ const mapDispatchToProps = (dispatch) => ({
 export {App};
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(App);
