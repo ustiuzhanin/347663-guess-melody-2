@@ -2,56 +2,113 @@
 
 exports[`App's snapshot 1`] = `
 <section
-  className="welcome"
+  className="game"
 >
-  <div
-    className="welcome__logo"
+  <header
+    className="game__header"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
   >
-    <img
-      alt="Угадай мелодию"
-      height="83"
-      src="img/melody-logo.png"
-      width="186"
-    />
-  </div>
-  <button
-    className="welcome__button"
-    onClick={[Function]}
-  >
-    <span
-      className="visually-hidden"
+    <a
+      className="game__back"
+      href="#"
     >
-      Начать игру
-    </span>
-  </button>
-  <h2
-    className="welcome__rules-title"
+      <span
+        className="visually-hidden"
+      >
+        Сыграть ещё раз
+      </span>
+      <img
+        alt="Угадай мелодию"
+        className="game__logo"
+        src="img/melody-logo-ginger.png"
+      />
+    </a>
+    <div
+      className="timer__value"
+    >
+      <span
+        className="timer__mins"
+      >
+        05
+      </span>
+      <span
+        className="timer__dots"
+      >
+        :
+      </span>
+      <span
+        className="timer__secs"
+      >
+        00
+      </span>
+    </div>
+    <div
+      className="game__mistakes"
+    >
+      <div
+        className="wrong"
+      />
+      <div
+        className="wrong"
+      />
+    </div>
+  </header>
+  <section
+    className="welcome"
   >
-    Правила игры
-  </h2>
-  <p
-    className="welcome__text"
-  >
-    Правила просты:
-  </p>
-  <ul
-    className="welcome__rules-list"
-  >
-    <li>
-      За 
-      3
-       минут нужно ответить на все вопросы.
-    </li>
-    <li>
-      Можно допустить 
-      3
-       ошибки.
-    </li>
-  </ul>
-  <p
-    className="welcome__text"
-  >
-    Удачи!
-  </p>
+    <div
+      className="welcome__logo"
+    >
+      <img
+        alt="Угадай мелодию"
+        height="83"
+        src="img/melody-logo.png"
+        width="186"
+      />
+    </div>
+    <button
+      className="welcome__button"
+      onClick={[MockFunction]}
+    >
+      <span
+        className="visually-hidden"
+      >
+        Начать игру
+      </span>
+    </button>
+    <h2
+      className="welcome__rules-title"
+    >
+      Правила игры
+    </h2>
+    <p
+      className="welcome__text"
+    >
+      Правила просты:
+    </p>
+    <ul
+      className="welcome__rules-list"
+    >
+      <li>
+        За 
+        3
+         минут нужно ответить на все вопросы.
+      </li>
+      <li>
+        Можно допустить 
+        3
+         ошибки.
+      </li>
+    </ul>
+    <p
+      className="welcome__text"
+    >
+      Удачи!
+    </p>
+  </section>
 </section>
 `;

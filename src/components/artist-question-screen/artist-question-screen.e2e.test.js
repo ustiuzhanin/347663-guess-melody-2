@@ -7,7 +7,7 @@ Enzyme.configure({adapter: new Adapter()});
 
 it(`check the type of user's answer data`, () => {
   const getUserAnswer = jest.fn((answr) => {
-    expect(typeof answr === `string`).toBeTruthy();
+    expect(typeof answr === `number`).toBeTruthy();
   });
 
   const artistQuestionScreen = shallow(

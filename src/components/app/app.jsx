@@ -131,7 +131,7 @@ const mapDispatchToProps = (dispatch) => ({
   onUserAnswer: (userAnswer, question, mistakes, maxMistakes) => {
     dispatch(ActionCreator.incrementStep());
     dispatch(
-      ActionCreator.incrementErrors(userAnswer, question, mistakes, maxMistakes)
+        ActionCreator.incrementErrors(userAnswer, question, mistakes, maxMistakes)
     );
   }
 });
@@ -139,6 +139,6 @@ const mapDispatchToProps = (dispatch) => ({
 export {App};
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(App);
