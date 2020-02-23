@@ -1,12 +1,13 @@
-import React, {PureComponent} from 'react';
-import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
+import React, {PureComponent} from "react";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer";
 
-import Welcome from '../welcome/welcome.jsx';
-import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen.jsx';
-import GenreQuestionScreen from '../genre-questionScreen/genre-question-screen.jsx';
-import ErrorWidget from '../error-widget/error-widget.jsx';
-import PropTypes from 'prop-types';
+import Welcome from "../welcome/welcome.jsx";
+import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen.jsx";
+import GenreQuestionScreen from "../genre-questionScreen/genre-question-screen.jsx";
+import ErrorWidget from "../error-widget/error-widget.jsx";
+import Timer from "../timer/timer.jsx";
+import PropTypes from "prop-types";
 
 class App extends PureComponent {
   getScreen(question) {
@@ -16,13 +17,29 @@ class App extends PureComponent {
       errorCount,
       onUserAnswer,
       resetProgress,
-      onWelcomeScreenClick
+      incrementStep,
+      startTimer,
+      time
     } = this.props;
 
     const currentQuestion = questions[question];
 
     if (!currentQuestion) {
       resetProgress();
+
+      const onWelcomeScreenClick = () => {
+        incrementStep();
+
+        let counter = time;
+
+        const timer = setInterval(() => {
+          startTimer((counter -= 1));
+
+          if (counter <= 0 || this.props.step === -1) {
+            clearInterval(timer);
+          }
+        }, 1000);
+      };
 
       return (
         <Welcome
@@ -66,30 +83,26 @@ class App extends PureComponent {
   }
 
   render() {
-    const {step, errorCount} = this.props;
+    const {step, errorCount, time} = this.props;
 
     return (
-      <section className='game'>
+      <section className="game">
         <header
           style={{display: step === -1 ? `none` : `flex`}}
-          className='game__header'
+          className="game__header"
         >
-          <a className='game__back' href='#'>
-            <span className='visually-hidden'>Сыграть ещё раз</span>
+          <a className="game__back" href="#">
+            <span className="visually-hidden">Сыграть ещё раз</span>
             <img
-              className='game__logo'
-              src='img/melody-logo-ginger.png'
-              alt='Угадай мелодию'
+              className="game__logo"
+              src="img/melody-logo-ginger.png"
+              alt="Угадай мелодию"
             />
           </a>
 
-          <div className='timer__value'>
-            <span className='timer__mins'>05</span>
-            <span className='timer__dots'>:</span>
-            <span className='timer__secs'>00</span>
-          </div>
+          <Timer minutes={Math.floor(time / 60)} seconds={time % 60} />
 
-          <div className='game__mistakes'>{this.renderErrors(errorCount)}</div>
+          <div className="game__mistakes">{this.renderErrors(errorCount)}</div>
         </header>
 
         {this.getScreen(step)}
@@ -111,22 +124,28 @@ App.propTypes = {
   errorCount: PropTypes.number.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
   resetProgress: PropTypes.func.isRequired,
-  onWelcomeScreenClick: PropTypes.func.isRequired,
-  step: PropTypes.number.isRequired
+  step: PropTypes.number.isRequired,
+  incrementStep: PropTypes.func.isRequired,
+  startTimer: PropTypes.func.isRequired,
+  time: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
     step: state.step,
-    errorCount: state.errorCount
+    errorCount: state.errorCount,
+    time: state.time
   });
 
 const mapDispatchToProps = (dispatch) => ({
-  onWelcomeScreenClick: () => {
-    dispatch(ActionCreator.incrementStep());
-  },
   resetProgress: () => {
     dispatch(ActionCreator.resetStep());
+  },
+  incrementStep: () => {
+    dispatch(ActionCreator.incrementStep());
+  },
+  startTimer: (time) => {
+    dispatch(ActionCreator.startTimer(time));
   },
   onUserAnswer: (userAnswer, question, mistakes, maxMistakes) => {
     dispatch(ActionCreator.incrementStep());
@@ -138,7 +157,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {App};
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

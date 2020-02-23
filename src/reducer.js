@@ -52,12 +52,18 @@ const ActionCreator = {
 
   resetStep: () => ({
     type: `RESET_STEP`
+  }),
+
+  startTimer: (time) => ({
+    type: `START_TIMER`,
+    payload: time
   })
 };
 
 const initialState = {
   step: -1,
-  errorCount: 0
+  errorCount: 0,
+  time: 5 * 60
 };
 
 const reducer = (state = initialState, action) => {
@@ -72,6 +78,10 @@ const reducer = (state = initialState, action) => {
       });
     case `RESET_STEP`:
       return Object.assign({}, initialState);
+    case `START_TIMER`:
+      return Object.assign({}, state, {
+        time: action.payload
+      });
   }
   return state;
 };

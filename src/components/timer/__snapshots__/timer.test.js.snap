@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Timer's Snapshot 1`] = `
+<div
+  className="timer__value"
+>
+  <span
+    className="timer__mins"
+  >
+    4
+  </span>
+  <span
+    className="timer__dots"
+  >
+    :
+  </span>
+  <span
+    className="timer__secs"
+  >
+    30
+  </span>
+</div>
+`;

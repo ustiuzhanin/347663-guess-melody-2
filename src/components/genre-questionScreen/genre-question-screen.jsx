@@ -1,6 +1,6 @@
-import React, {PureComponent} from 'react';
-import AudioPlayer from '../audio-player/audio-player.jsx';
-import PropTypes from 'prop-types';
+import React, {PureComponent} from "react";
+import AudioPlayer from "../audio-player/audio-player.jsx";
+import PropTypes from "prop-types";
 
 export default class GenreQuestionScreen extends PureComponent {
   constructor(props) {
@@ -35,11 +35,11 @@ export default class GenreQuestionScreen extends PureComponent {
     };
 
     return (
-      <section className='game game--genre'>
-        <section className='game__screen'>
-          <h2 className='game__title'>Выберите {genre} треки</h2>
+      <section className="game game--genre">
+        <section className="game__screen">
+          <h2 className="game__title">Выберите {genre} треки</h2>
           <form
-            className='game__tracks'
+            className="game__tracks"
             onSubmit={(evt) => {
               evt.preventDefault();
 
@@ -49,7 +49,7 @@ export default class GenreQuestionScreen extends PureComponent {
           >
             {answers.map((answer, i) => {
               return (
-                <div key={`${screenIndex}-answer-${i}`} className='track'>
+                <div key={`${screenIndex}-answer-${i}`} className="track">
                   <AudioPlayer
                     src={answer.src}
                     isPlaying={i === this.state.activePlayer}
@@ -59,26 +59,25 @@ export default class GenreQuestionScreen extends PureComponent {
                       })
                     }
                   />
-                  <div className='game__answer'>
+                  <div className="game__answer">
                     <input
-                      className='game__input visually-hidden'
-                      type='checkbox'
-                      name='answer'
+                      className="game__input visually-hidden"
+                      type="checkbox"
+                      name="answer"
                       value={`${i}`}
                       id={`answer-${i + 1}`}
                       onClick={(e) => {
                         btnClickHandler(e);
                       }}
                     />
-                    <label className='game__check' htmlFor={`answer-${i + 1}`}>
+                    <label className="game__check" htmlFor={`answer-${i + 1}`}>
                       Отметить
                     </label>
                   </div>
                 </div>
               );
             })}
-
-            <button className='game__submit button' type='submit'>
+            <button className="game__submit button" type="submit">
               Ответить
             </button>
           </form>

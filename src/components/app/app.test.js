@@ -11,7 +11,9 @@ test(`App's snapshot`, () => {
           errorCount={2}
           onUserAnswer={jest.fn()}
           resetProgress={jest.fn()}
-          onWelcomeScreenClick={jest.fn()}
+          startTimer={jest.fn()}
+          incrementStep={jest.fn()}
+          time={300}
           step={-1}
         />
     )

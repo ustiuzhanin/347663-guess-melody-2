@@ -33,7 +33,7 @@ exports[`App's snapshot 1`] = `
       <span
         className="timer__mins"
       >
-        05
+        5
       </span>
       <span
         className="timer__dots"
@@ -43,7 +43,7 @@ exports[`App's snapshot 1`] = `
       <span
         className="timer__secs"
       >
-        00
+        0
       </span>
     </div>
     <div
@@ -72,7 +72,7 @@ exports[`App's snapshot 1`] = `
     </div>
     <button
       className="welcome__button"
-      onClick={[MockFunction]}
+      onClick={[Function]}
     >
       <span
         className="visually-hidden"
