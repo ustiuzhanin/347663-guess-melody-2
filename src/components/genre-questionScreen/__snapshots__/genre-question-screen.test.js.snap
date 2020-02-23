@@ -21,11 +21,6 @@ exports[`GenreQuestionScreen's snapshot 1`] = `
       <div
         className="track"
       >
-        <AudioPlayer
-          isPlaying={false}
-          onPlayButtonClick={[Function]}
-          src="url1"
-        />
         <div
           className="game__answer"
         >
@@ -48,11 +43,6 @@ exports[`GenreQuestionScreen's snapshot 1`] = `
       <div
         className="track"
       >
-        <AudioPlayer
-          isPlaying={false}
-          onPlayButtonClick={[Function]}
-          src="url2"
-        />
         <div
           className="game__answer"
         >

@@ -1,7 +1,7 @@
-import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import ArtistQuestionScreen from './artist-question-screen.jsx';
+import React from "react";
+import Enzyme, {shallow} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import ArtistQuestionScreen from "./artist-question-screen.jsx";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -18,6 +18,8 @@ it(`check the type of user's answer data`, () => {
           song: {artist: `str`, src: `str`}
         }}
         onAnswer={getUserAnswer}
+        renderPlayer={jest.fn()}
+        onSubmitBtnClick={jest.fn()}
       />
   );
 

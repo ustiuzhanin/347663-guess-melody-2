@@ -8,6 +8,10 @@ import GenreQuestionScreen from "../genre-questionScreen/genre-question-screen.j
 import ErrorWidget from "../error-widget/error-widget.jsx";
 import Timer from "../timer/timer.jsx";
 import PropTypes from "prop-types";
+import withActivePlayer from "../../hocs/with-active-player/with-active-player.jsx";
+
+const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
+const GenreQuestionScreenWrapped = withActivePlayer(GenreQuestionScreen);
 
 class App extends PureComponent {
   getScreen(question) {
@@ -53,7 +57,7 @@ class App extends PureComponent {
     switch (currentQuestion.type) {
       case `genre`:
         return (
-          <GenreQuestionScreen
+          <GenreQuestionScreenWrapped
             screenIndex={question}
             question={currentQuestion}
             onAnswer={(answer) =>
@@ -63,7 +67,7 @@ class App extends PureComponent {
         );
       case `artist`:
         return (
-          <ArtistQuestionScreen
+          <ArtistQuestionScreenWrapped
             screenIndex={question}
             question={currentQuestion}
             onAnswer={(answer) =>

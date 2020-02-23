@@ -1,6 +1,6 @@
-import React from 'react';
-import GenreQuestionScreen from './genre-question-screen.jsx';
-import ShallowRenderer from 'react-test-renderer/shallow';
+import React from "react";
+import GenreQuestionScreen from "./genre-question-screen.jsx";
+import ShallowRenderer from "react-test-renderer/shallow";
 
 test(`GenreQuestionScreen's snapshot`, () => {
   const renderer = new ShallowRenderer();
@@ -9,9 +9,14 @@ test(`GenreQuestionScreen's snapshot`, () => {
         screenIndex={0}
         question={{
           genre: `folk`,
-          answers: [{genre: `rock`, src: `url1`}, {genre: `pop`, src: `url2`}]
+          answers: [
+            {genre: `rock`, src: `url1`},
+            {genre: `pop`, src: `url2`}
+          ]
         }}
         onAnswer={jest.fn()}
+        renderPlayer={jest.fn()}
+        onSubmitBtnClick={jest.fn()}
       />
   );
   const result = renderer.getRenderOutput();
