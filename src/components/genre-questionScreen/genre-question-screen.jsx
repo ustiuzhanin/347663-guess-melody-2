@@ -1,69 +1,59 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-export default class GenreQuestionScreen extends PureComponent {
-  constructor(props) {
-    super(props);
+export default function GenreQuestionScreen(props) {
+  const {
+    screenIndex,
+    question,
+    onAnswer,
+    renderPlayer,
+    onSubmitBtnClick,
+    onClick
+  } = props;
+  const {genre, answers} = question;
 
-    this.state = {
-      userAnswer: []
-    };
-  }
+  return (
+    <section className="game game--genre">
+      <section className="game__screen">
+        <h2 className="game__title">Выберите {genre} треки</h2>
+        <form
+          className="game__tracks"
+          onSubmit={(evt) => {
+            evt.preventDefault();
 
-  render() {
-    const {
-      screenIndex,
-      question,
-      onAnswer,
-      renderPlayer,
-      onSubmitBtnClick,
-      onClick
-    } = this.props;
-    const {genre, answers} = question;
-
-    return (
-      <section className="game game--genre">
-        <section className="game__screen">
-          <h2 className="game__title">Выберите {genre} треки</h2>
-          <form
-            className="game__tracks"
-            onSubmit={(evt) => {
-              evt.preventDefault();
-
-              onAnswer();
-              onSubmitBtnClick();
-            }}
-          >
-            {answers.map((answer, i) => {
-              return (
-                <div key={`${screenIndex}-answer-${i}`} className="track">
-                  {renderPlayer(answer, i)}
-                  <div className="game__answer">
-                    <input
-                      className="game__input visually-hidden"
-                      type="checkbox"
-                      name="answer"
-                      value={`${i}`}
-                      id={`answer-${i + 1}`}
-                      onClick={(e) => {
-                        onClick(e);
-                      }}
-                    />
-                    <label className="game__check" htmlFor={`answer-${i + 1}`}>
-                      Отметить
-                    </label>
-                  </div>
+            onAnswer();
+            onSubmitBtnClick();
+          }}
+        >
+          {answers.map((answer, i) => {
+            return (
+              <div key={`${screenIndex}-answer-${i}`} className="track">
+                {renderPlayer(answer, i)}
+                <div className="game__answer">
+                  <input
+                    className="game__input visually-hidden"
+                    type="checkbox"
+                    name="answer"
+                    value={`${i}`}
+                    id={`answer-${i + 1}`}
+                    onClick={(e) => {
+                      onClick(e);
+                    }}
+                  />
+                  <label className="game__check" htmlFor={`answer-${i + 1}`}>
+                    Отметить
+                  </label>
                 </div>
-              );
-            })}
-            <button className="game__submit button" type="submit">
-              Ответить
-            </button>
-          </form>
-        </section>
+              </div>
+            );
+          })}
+          <button className="game__submit button" type="submit">
+            Ответить
+          </button>
+        </form>
       </section>
-    );
-  }
+    </section>
+  );
 }
 
 GenreQuestionScreen.propTypes = {

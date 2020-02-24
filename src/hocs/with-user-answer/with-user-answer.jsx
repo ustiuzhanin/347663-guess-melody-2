@@ -15,16 +15,8 @@ export default function withUserAnswer(Component) {
     }
 
     onButtonClick(evt) {
-      // eslint-disable-next-line
-      console.log(evt);
-      // eslint-disable-next-line
-      console.log(evt.target);
-      // eslint-disable-next-line
-      console.log(evt.target.value);
       const answerValue = +evt.target.value;
       if (evt.target.checked) {
-        // eslint-disable-next-line
-        console.log("2wewew");
         this.setState((prevState) => {
           return {
             userAnswer: [...prevState.userAnswer, answerValue]

@@ -1,6 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import AudioPlayer from './audio-player.jsx';
+import React from "react";
+import renderer from "react-test-renderer";
+import AudioPlayer from "./audio-player.jsx";
 
 test(`AudioPlayer snapshot's`, () => {
   const tree = renderer
@@ -8,7 +8,9 @@ test(`AudioPlayer snapshot's`, () => {
         <AudioPlayer
           isPlaying={false}
           onPlayButtonClick={jest.fn()}
-          src='url1'
+          src="url1"
+          isLoading={false}
+          audioRef={React.createRef()}
         />,
         {
           createNodeMock: (element) => {

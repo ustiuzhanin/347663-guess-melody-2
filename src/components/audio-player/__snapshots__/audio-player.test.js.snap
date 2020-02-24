@@ -4,8 +4,8 @@ exports[`AudioPlayer snapshot's 1`] = `
 Array [
   <button
     className="track__button track__button--play"
-    disabled={true}
-    onClick={[Function]}
+    disabled={false}
+    onClick={[MockFunction]}
     type="button"
   />,
   <div
