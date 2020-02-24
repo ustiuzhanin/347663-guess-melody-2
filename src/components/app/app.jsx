@@ -9,9 +9,12 @@ import ErrorWidget from "../error-widget/error-widget.jsx";
 import Timer from "../timer/timer.jsx";
 import PropTypes from "prop-types";
 import withActivePlayer from "../../hocs/with-active-player/with-active-player.jsx";
+import withUserAnswer from "../../hocs/with-user-answer/with-user-answer.jsx";
 
 const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
-const GenreQuestionScreenWrapped = withActivePlayer(GenreQuestionScreen);
+const GenreQuestionScreenWrapped = withUserAnswer(
+    withActivePlayer(GenreQuestionScreen)
+);
 
 class App extends PureComponent {
   getScreen(question) {
@@ -68,6 +71,7 @@ class App extends PureComponent {
       case `artist`:
         return (
           <ArtistQuestionScreenWrapped
+            key={question}
             screenIndex={question}
             question={currentQuestion}
             onAnswer={(answer) =>

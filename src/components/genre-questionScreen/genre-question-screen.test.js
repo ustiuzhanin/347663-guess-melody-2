@@ -17,6 +17,7 @@ test(`GenreQuestionScreen's snapshot`, () => {
         onAnswer={jest.fn()}
         renderPlayer={jest.fn()}
         onSubmitBtnClick={jest.fn()}
+        onClick={jest.fn()}
       />
   );
   const result = renderer.getRenderOutput();

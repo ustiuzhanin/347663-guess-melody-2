@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 export default function ArtistQuestionScreen(props) {
   const {question, onAnswer, renderPlayer, onSubmitBtnClick} = props;
   const {answers, song} = question;
+
   return (
     <section className="game game--artist">
       <section className="game__screen">

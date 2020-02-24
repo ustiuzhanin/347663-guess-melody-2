@@ -16,27 +16,10 @@ export default class GenreQuestionScreen extends PureComponent {
       question,
       onAnswer,
       renderPlayer,
-      onSubmitBtnClick
+      onSubmitBtnClick,
+      onClick
     } = this.props;
     const {genre, answers} = question;
-
-    const btnClickHandler = (evt) => {
-      const answerValue = +evt.target.value;
-
-      if (evt.target.checked) {
-        this.setState((prevState) => {
-          return {
-            userAnswer: [...prevState.userAnswer, answerValue]
-          };
-        });
-      } else {
-        this.setState((prevState) => ({
-          userAnswer: prevState.userAnswer.filter(
-              (answr) => answr !== answerValue
-          )
-        }));
-      }
-    };
 
     return (
       <section className="game game--genre">
@@ -47,9 +30,8 @@ export default class GenreQuestionScreen extends PureComponent {
             onSubmit={(evt) => {
               evt.preventDefault();
 
-              onAnswer(this.state.userAnswer);
+              onAnswer();
               onSubmitBtnClick();
-              this.setState({userAnswer: [], activePlayer: -1});
             }}
           >
             {answers.map((answer, i) => {
@@ -64,7 +46,7 @@ export default class GenreQuestionScreen extends PureComponent {
                       value={`${i}`}
                       id={`answer-${i + 1}`}
                       onClick={(e) => {
-                        btnClickHandler(e);
+                        onClick(e);
                       }}
                     />
                     <label className="game__check" htmlFor={`answer-${i + 1}`}>
@@ -92,5 +74,6 @@ GenreQuestionScreen.propTypes = {
     answers: PropTypes.array.isRequired
   }).isRequired,
   renderPlayer: PropTypes.func.isRequired,
-  onSubmitBtnClick: PropTypes.func.isRequired
+  onSubmitBtnClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired
 };
