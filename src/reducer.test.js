@@ -5,7 +5,9 @@ describe(`reducer works correctly`, () => {
     expect(reducer(undefined, {})).toEqual({
       step: -1,
       errorCount: 0,
-      time: 300
+      time: 300,
+      questions: [],
+      isAuthorizationRequired: false
     });
   });
 

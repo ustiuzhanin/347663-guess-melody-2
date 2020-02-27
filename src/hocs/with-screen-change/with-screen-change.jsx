@@ -5,7 +5,7 @@ import {compose} from "recompose";
 import ArtistQuestionScreen from "../../components/artist-question-screen/artist-question-screen.jsx";
 import GenreQuestionScreen from "../../components/genre-questionScreen/genre-question-screen.jsx";
 import Welcome from "../../components/welcome/welcome.jsx";
-
+import AuthorizationScreen from "../../components/authorization-screen/authorization-screen.jsx";
 import withActivePlayer from "../with-active-player/with-active-player.jsx";
 import withUserAnswer from "../with-user-answer/with-user-answer.jsx";
 import ErrorWidget from "../../components/error-widget/error-widget.jsx";
@@ -33,10 +33,15 @@ const withScreenChange = (Component) => {
         resetProgress,
         incrementStep,
         startTimer,
-        time
+        time,
+        isAuthorizationRequired
       } = this.props;
 
       const currentQuestion = questions[question];
+
+      if (isAuthorizationRequired) {
+        return <AuthorizationScreen />;
+      }
 
       if (!currentQuestion) {
         resetProgress();
@@ -124,7 +129,8 @@ const withScreenChange = (Component) => {
     step: PropTypes.number.isRequired,
     incrementStep: PropTypes.func.isRequired,
     startTimer: PropTypes.func.isRequired,
-    time: PropTypes.number.isRequired
+    time: PropTypes.number.isRequired,
+    isAuthorizationRequired: PropTypes.bool.isRequired
   };
 
   return WithScreenChange;
@@ -134,7 +140,9 @@ const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
     step: state.step,
     errorCount: state.errorCount,
-    time: state.time
+    time: state.time,
+    questions: state.questions,
+    isAuthorizationRequired: state.isAuthorizationRequired
   });
 
 const mapDispatchToProps = (dispatch) => ({

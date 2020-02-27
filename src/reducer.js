@@ -57,17 +57,45 @@ const ActionCreator = {
   startTimer: (time) => ({
     type: `START_TIMER`,
     payload: time
-  })
+  }),
+
+  loadQuestions: (questions) => {
+    return {
+      type: `LOAD_QUESTIONS`,
+      payload: questions
+    };
+  },
+
+  requireAuthorization: (status) => {
+    return {
+      type: `REQUIRED_AUTHORIZATION`,
+      payload: status
+    };
+  }
 };
 
 const initialState = {
   step: -1,
   errorCount: 0,
-  time: 5 * 60
+  time: 5 * 60,
+  questions: [],
+  isAuthorizationRequired: false
+};
+
+const Operations = {
+  loadQuestions: () => (dispatch, getState, api) => {
+    return api.get(`/questions`).then((response) => {
+      dispatch(ActionCreator.loadQuestions(response.data));
+    });
+  }
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case `LOAD_QUESTIONS`:
+      return Object.assign({}, state, {
+        questions: action.payload
+      });
     case `INCREMENT_STEP`:
       return Object.assign({}, state, {
         step: state.step + action.payload
@@ -77,13 +105,21 @@ const reducer = (state = initialState, action) => {
         errorCount: state.errorCount + action.payload
       });
     case `RESET_STEP`:
-      return Object.assign({}, initialState);
+      return Object.assign({}, state, {
+        step: -1,
+        errorCount: 0,
+        time: 5 * 60
+      });
     case `START_TIMER`:
       return Object.assign({}, state, {
         time: action.payload
+      });
+    case `REQUIRED_AUTHORIZATION`:
+      return Object.assign({}, state, {
+        isArtistAnswerCorrect: action.payload
       });
   }
   return state;
 };
 
-export {ActionCreator, reducer};
+export {ActionCreator, reducer, Operations};
