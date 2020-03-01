@@ -7,7 +7,8 @@ describe(`reducer works correctly`, () => {
       errorCount: 0,
       time: 300,
       questions: [],
-      isAuthorizationRequired: false
+      isAuthorizationRequired: true,
+      user: ``
     });
   });
 

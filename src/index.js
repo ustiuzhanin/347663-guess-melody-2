@@ -6,7 +6,7 @@ import thunk from "redux-thunk";
 import {compose} from "recompose";
 
 import {reducer, Operations} from "./reducer";
-// import {questions} from "./mocks/questions";
+
 import {settings} from "./mocks/settings";
 import createAPI from "./api";
 import App from "./components/app/App.jsx";

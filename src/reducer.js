@@ -66,6 +66,13 @@ const ActionCreator = {
     };
   },
 
+  requestSignUp: (user) => {
+    return {
+      type: `REQUEST_SIGNUP`,
+      payload: user
+    };
+  },
+
   requireAuthorization: (status) => {
     return {
       type: `REQUIRED_AUTHORIZATION`,
@@ -79,13 +86,20 @@ const initialState = {
   errorCount: 0,
   time: 5 * 60,
   questions: [],
-  isAuthorizationRequired: false
+  isAuthorizationRequired: true,
+  user: ``
 };
 
 const Operations = {
   loadQuestions: () => (dispatch, getState, api) => {
     return api.get(`/questions`).then((response) => {
       dispatch(ActionCreator.loadQuestions(response.data));
+    });
+  },
+  requestSignUp: (email, password) => (dispatch, _, api) => {
+    return api.post(`/login`, {email, password}).then((response) => {
+      dispatch(ActionCreator.requestSignUp(response.request.response));
+      dispatch(ActionCreator.requireAuthorization(false));
     });
   }
 };
@@ -95,6 +109,10 @@ const reducer = (state = initialState, action) => {
     case `LOAD_QUESTIONS`:
       return Object.assign({}, state, {
         questions: action.payload
+      });
+    case `REQUEST_SIGNUP`:
+      return Object.assign({}, state, {
+        user: action.payload
       });
     case `INCREMENT_STEP`:
       return Object.assign({}, state, {
@@ -116,7 +134,7 @@ const reducer = (state = initialState, action) => {
       });
     case `REQUIRED_AUTHORIZATION`:
       return Object.assign({}, state, {
-        isArtistAnswerCorrect: action.payload
+        isAuthorizationRequired: action.payload
       });
   }
   return state;

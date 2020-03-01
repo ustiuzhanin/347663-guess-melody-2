@@ -6,9 +6,12 @@ import ArtistQuestionScreen from "../../components/artist-question-screen/artist
 import GenreQuestionScreen from "../../components/genre-questionScreen/genre-question-screen.jsx";
 import Welcome from "../../components/welcome/welcome.jsx";
 import AuthorizationScreen from "../../components/authorization-screen/authorization-screen.jsx";
+import ErrorWidget from "../../components/error-widget/error-widget.jsx";
+
 import withActivePlayer from "../with-active-player/with-active-player.jsx";
 import withUserAnswer from "../with-user-answer/with-user-answer.jsx";
-import ErrorWidget from "../../components/error-widget/error-widget.jsx";
+import withUserAuth from "../with-user-auth/with-user-auth.jsx";
+
 import {ActionCreator} from "../../reducer";
 
 import PropTypes from "prop-types";
@@ -17,6 +20,7 @@ const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
 const GenreQuestionScreenWrapped = withUserAnswer(
     withActivePlayer(GenreQuestionScreen)
 );
+const AuthorizationScreenWrapped = withUserAuth(AuthorizationScreen);
 
 const withScreenChange = (Component) => {
   class WithScreenChange extends PureComponent {
@@ -40,7 +44,7 @@ const withScreenChange = (Component) => {
       const currentQuestion = questions[question];
 
       if (isAuthorizationRequired) {
-        return <AuthorizationScreen />;
+        return <AuthorizationScreenWrapped />;
       }
 
       if (!currentQuestion) {

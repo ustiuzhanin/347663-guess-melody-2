@@ -14,6 +14,7 @@ export default function configueAPI(dispatch) {
     if (err.response.status === 403) {
       dispatch(ActionCreator.requiredAuthorization(true));
     }
+
     return err;
   };
 

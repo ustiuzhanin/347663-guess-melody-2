@@ -1,6 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default function AuthorizationScreen() {
+export default function AuthorizationScreen(props) {
+  const {onChange, onSubmit} = props;
   return (
     <section className="login">
       <div className="login__logo">
@@ -19,12 +21,17 @@ export default function AuthorizationScreen() {
       <p className="login__text">
         Хотите сравнить свой результат с предыдущими попытками? Представтесь!
       </p>
-      <form className="login__form" action="">
+      <form
+        className="login__form"
+        action=""
+        onChange={onChange}
+        onSubmit={onSubmit}
+      >
         <p className="login__field">
           <label className="login__label" htmlFor="name">
             Логин
           </label>
-          <input className="login__input" type="text" name="name" id="name" />
+          <input className="login__input" type="text" name="email" id="name" />
         </p>
         <p className="login__field">
           <label className="login__label" htmlFor="password">
@@ -48,3 +55,8 @@ export default function AuthorizationScreen() {
     </section>
   );
 }
+
+AuthorizationScreen.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
+};
