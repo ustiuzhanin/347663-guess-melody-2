@@ -40,10 +40,6 @@ const withScreenChange = (Component) => {
 
       this.timer = setInterval(() => {
         startTimer((time -= 1));
-
-        // if (time <= 0) {
-        //   clearInterval(this.timer);
-        // }
       }, 1000);
     }
 
@@ -61,6 +57,7 @@ const withScreenChange = (Component) => {
         incrementStep,
         time,
         step,
+        loading,
         isAuthorizationRequired
       } = this.props;
 
@@ -83,7 +80,6 @@ const withScreenChange = (Component) => {
         return <Redirect to="/lose" />;
       }
 
-      // if (!currentQuestion) {
       if (step === -1) {
         resetProgress();
 
@@ -91,16 +87,6 @@ const withScreenChange = (Component) => {
           incrementStep();
 
           this.runTimer(time);
-
-          // let counter = time;
-
-          // const timer = setInterval(() => {
-          //   startTimer((counter -= 1));
-
-          //   if (counter <= 0 || this.props.step === -1) {
-          //     clearInterval(timer);
-          //   }
-          // }, 1000);
         };
 
         return (
@@ -108,6 +94,7 @@ const withScreenChange = (Component) => {
             time={gameTime}
             errorCount={maxErrors}
             onStartButtonClick={onWelcomeScreenClick}
+            loading={loading}
           />
         );
       }
@@ -190,6 +177,7 @@ const withScreenChange = (Component) => {
     onUserAnswer: PropTypes.func.isRequired,
     resetProgress: PropTypes.func.isRequired,
     step: PropTypes.number.isRequired,
+    loading: PropTypes.bool.isRequired,
     incrementStep: PropTypes.func.isRequired,
     startTimer: PropTypes.func.isRequired,
     time: PropTypes.number.isRequired,
@@ -204,6 +192,7 @@ const mapStateToProps = (state, ownProps) =>
     step: state.step,
     errorCount: state.errorCount,
     time: state.time,
+    loading: state.loading,
     questions: state.questions,
     isAuthorizationRequired: state.isAuthorizationRequired
   });

@@ -4,11 +4,13 @@ import {BrowserRouter} from "react-router-dom";
 import ResultLose from "./result-lose.jsx";
 
 test(`ResultLose's snapshot`, () => {
-  const tree = renderer.create(
-      <BrowserRouter>
-        <ResultLose />
-      </BrowserRouter>
-  );
+  const tree = renderer
+    .create(
+        <BrowserRouter>
+          <ResultLose />
+        </BrowserRouter>
+    )
+    .toJSON();
 
   expect(tree).toMatchSnapshot();
 });

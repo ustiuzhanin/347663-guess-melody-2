@@ -74,6 +74,13 @@ const ActionCreator = {
       type: `REQUIRED_AUTHORIZATION`,
       payload: status
     };
+  },
+
+  loadingInProgress: (status) => {
+    return {
+      type: `LOADING_IN_PROGRESS`,
+      payload: status
+    };
   }
 };
 
@@ -83,13 +90,16 @@ const initialState = {
   time: 5 * 60,
   questions: [],
   isAuthorizationRequired: true,
-  user: ``
+  user: ``,
+  loading: false
 };
 
 const Operations = {
   loadQuestions: () => (dispatch, getState, api) => {
+    dispatch(ActionCreator.loadingInProgress(true));
     return api.get(`/questions`).then((response) => {
       dispatch(ActionCreator.loadQuestions(response.data));
+      dispatch(ActionCreator.loadingInProgress(false));
     });
   },
   requestSignUp: (email, password) => (dispatch, _, api) => {
@@ -131,6 +141,10 @@ const reducer = (state = initialState, action) => {
     case `REQUIRED_AUTHORIZATION`:
       return Object.assign({}, state, {
         isAuthorizationRequired: action.payload
+      });
+    case `LOADING_IN_PROGRESS`:
+      return Object.assign({}, state, {
+        loading: action.payload
       });
   }
   return state;

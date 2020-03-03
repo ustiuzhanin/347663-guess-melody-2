@@ -21,10 +21,7 @@ export default function withAudio(Component) {
     componentDidMount() {
       const audio = this.audioRef.current;
       const {src} = this.props;
-      // eslint-disable-next-line
-      console.log(this.audioRef);
-      // eslint-disable-next-line
-      console.log(audio);
+
       audio.src = src;
 
       audio.oncanplaythrough = () =>
