@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AuthorizationScreen's snapshot 1`] = `
-<label
+exports[`ResultWin's snapshot 1`] = `
+<section
   className="login"
 >
   <div
@@ -17,18 +17,27 @@ exports[`AuthorizationScreen's snapshot 1`] = `
   <h2
     className="login__title"
   >
-    Необходима авторизация
+    Вы настоящий меломан!
   </h2>
+  <p
+    className="login__total"
+  >
+    За 
+    0
+     минуты и 
+    10
+     секунд вы набрали 12 баллов (8 быстрых), совершив 
+    1
+     ошибки
+  </p>
   <p
     className="login__text"
   >
-    Представтесь!
+    Хотите сравнить свой результат с предыдущими попытками? Представтесь!
   </p>
   <form
     action=""
     className="login__form"
-    onChange={[MockFunction]}
-    onSubmit={[MockFunction]}
   >
     <p
       className="login__field"
@@ -42,7 +51,7 @@ exports[`AuthorizationScreen's snapshot 1`] = `
       <input
         className="login__input"
         id="name"
-        name="email"
+        name="name"
         type="text"
       />
     </p>
@@ -69,11 +78,17 @@ exports[`AuthorizationScreen's snapshot 1`] = `
     </p>
     <button
       className="login__button button"
-      onClick={[Function]}
       type="submit"
     >
       Войти
     </button>
   </form>
-</label>
+  <a
+    className="replay"
+    href="/"
+    onClick={[Function]}
+  >
+    Сыграть ещё раз
+  </a>
+</section>
 `;

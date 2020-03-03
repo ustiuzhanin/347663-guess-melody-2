@@ -3,8 +3,15 @@ import PropTypes from "prop-types";
 
 export default function AuthorizationScreen(props) {
   const {onChange, onSubmit} = props;
+
+  const onBtnCLick = (evt) => {
+    evt.preventDefault();
+
+    // props.history.goBack();
+  };
+
   return (
-    <section className="login">
+    <label className="login">
       <div className="login__logo">
         <img
           src="img/melody-logo.png"
@@ -13,14 +20,8 @@ export default function AuthorizationScreen(props) {
           height="83"
         />
       </div>
-      <h2 className="login__title">Вы настоящий меломан!</h2>
-      <p className="login__total">
-        За 3 минуты и 25 секунд вы набрали 12 баллов (8 быстрых), совершив 3
-        ошибки
-      </p>
-      <p className="login__text">
-        Хотите сравнить свой результат с предыдущими попытками? Представтесь!
-      </p>
+      <h2 className="login__title">Необходима авторизация</h2>
+      <p className="login__text">Представтесь!</p>
       <form
         className="login__form"
         action=""
@@ -45,14 +46,15 @@ export default function AuthorizationScreen(props) {
           />
           <span className="login__error">Неверный пароль</span>
         </p>
-        <button className="login__button button" type="submit">
+        <button
+          className="login__button button"
+          type="submit"
+          onClick={(evt) => onBtnCLick(evt)}
+        >
           Войти
         </button>
       </form>
-      <button className="replay" type="button">
-        Сыграть ещё раз
-      </button>
-    </section>
+    </label>
   );
 }
 

@@ -1,12 +1,15 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {compose} from "recompose";
+import {Switch, Route, Redirect} from "react-router-dom";
 
 import ArtistQuestionScreen from "../../components/artist-question-screen/artist-question-screen.jsx";
 import GenreQuestionScreen from "../../components/genre-questionScreen/genre-question-screen.jsx";
 import Welcome from "../../components/welcome/welcome.jsx";
 import AuthorizationScreen from "../../components/authorization-screen/authorization-screen.jsx";
 import ErrorWidget from "../../components/error-widget/error-widget.jsx";
+import ResultLose from "../../components/result-lose/result-lose.jsx";
+import ResultWin from "../../components/result-win/result-win.jsx";
 
 import withActivePlayer from "../with-active-player/with-active-player.jsx";
 import withUserAnswer from "../with-user-answer/with-user-answer.jsx";
@@ -26,6 +29,26 @@ const withScreenChange = (Component) => {
   class WithScreenChange extends PureComponent {
     constructor(props) {
       super(props);
+
+      this.runTimer = this.runTimer.bind(this);
+      this.stopTimer = this.stopTimer.bind(this);
+      this.getScreen = this.getScreen.bind(this);
+    }
+
+    runTimer(time) {
+      const {startTimer} = this.props;
+
+      this.timer = setInterval(() => {
+        startTimer((time -= 1));
+
+        // if (time <= 0) {
+        //   clearInterval(this.timer);
+        // }
+      }, 1000);
+    }
+
+    stopTimer() {
+      clearInterval(this.timer);
     }
 
     getScreen(question) {
@@ -36,32 +59,48 @@ const withScreenChange = (Component) => {
         onUserAnswer,
         resetProgress,
         incrementStep,
-        startTimer,
         time,
+        step,
         isAuthorizationRequired
       } = this.props;
 
       const currentQuestion = questions[question];
 
       if (isAuthorizationRequired) {
-        return <AuthorizationScreenWrapped />;
+        // return <Redirect to="/auth" />;
+        // return <AuthorizationScreenWrapped />;
       }
 
-      if (!currentQuestion) {
+      if (step >= questions.length) {
+        this.stopTimer();
+
+        return <Redirect to="/win" />;
+      }
+
+      if (errorCount >= maxErrors || time <= 0) {
+        resetProgress();
+        this.stopTimer();
+        return <Redirect to="/lose" />;
+      }
+
+      // if (!currentQuestion) {
+      if (step === -1) {
         resetProgress();
 
         const onWelcomeScreenClick = () => {
           incrementStep();
 
-          let counter = time;
+          this.runTimer(time);
 
-          const timer = setInterval(() => {
-            startTimer((counter -= 1));
+          // let counter = time;
 
-            if (counter <= 0 || this.props.step === -1) {
-              clearInterval(timer);
-            }
-          }, 1000);
+          // const timer = setInterval(() => {
+          //   startTimer((counter -= 1));
+
+          //   if (counter <= 0 || this.props.step === -1) {
+          //     clearInterval(timer);
+          //   }
+          // }, 1000);
         };
 
         return (
@@ -108,11 +147,31 @@ const withScreenChange = (Component) => {
 
     render() {
       return (
-        <Component
-          {...this.props}
-          getScreen={(question) => this.getScreen(question)}
-          renderErrors={(errors) => this.renderErrors(errors)}
-        />
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <Component
+                {...this.props}
+                getScreen={(question) => this.getScreen(question)}
+                renderErrors={(errors) => this.renderErrors(errors)}
+              />
+            )}
+          />
+          <Route path="/auth" component={AuthorizationScreenWrapped} />
+          <Route path="/lose" component={ResultLose} />
+          <Route
+            path="/win"
+            render={() => (
+              <ResultWin
+                time={this.props.time}
+                errors={this.props.errorCount}
+                onClick={this.props.resetProgress}
+              />
+            )}
+          />
+        </Switch>
       );
     }
   }

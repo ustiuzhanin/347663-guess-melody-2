@@ -26,7 +26,7 @@ const ActionCreator = {
     payload: 1
   }),
 
-  incrementErrors: (userAnswer, question, errors, maxErrors) => {
+  incrementErrors: (userAnswer, question) => {
     let isAnswerCorrert = false;
 
     switch (question.type) {
@@ -36,12 +36,6 @@ const ActionCreator = {
       case `genre`:
         isAnswerCorrert = isGenreAnswerCorrect(userAnswer, question);
         break;
-    }
-
-    if (!isAnswerCorrert && errors + 1 >= maxErrors) {
-      return {
-        type: `RESET_STEP`
-      };
     }
 
     return {
@@ -54,10 +48,12 @@ const ActionCreator = {
     type: `RESET_STEP`
   }),
 
-  startTimer: (time) => ({
-    type: `START_TIMER`,
-    payload: time
-  }),
+  startTimer: (time) => {
+    return {
+      type: `START_TIMER`,
+      payload: time
+    };
+  },
 
   loadQuestions: (questions) => {
     return {

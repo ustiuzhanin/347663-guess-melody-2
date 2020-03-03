@@ -1,8 +1,9 @@
-import {createStore, applyMiddleware} from "redux";
-import {Provider} from "react-redux";
 import React from "react";
 import ReactDOM from "react-dom";
+import {BrowserRouter} from "react-router-dom";
 import thunk from "redux-thunk";
+import {createStore, applyMiddleware} from "redux";
+import {Provider} from "react-redux";
 import {compose} from "recompose";
 
 import {reducer, Operations} from "./reducer";
@@ -31,7 +32,9 @@ const init = () => {
 
   ReactDOM.render(
       <Provider store={store}>
-        <AppWrapped settings={settings} />
+        <BrowserRouter>
+          <AppWrapped settings={settings} />
+        </BrowserRouter>
       </Provider>,
       document.querySelector(`#root`)
   );
