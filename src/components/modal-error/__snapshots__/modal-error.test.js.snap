@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalError's Snapshot 1`] = `
+<section
+  className="modal"
+>
+  <h2
+    className="modal__title"
+  >
+    An error occurred!
+  </h2>
+  <p
+    className="modal__text"
+  >
+    Status: 404
+        Not Found
+    <br />
+    Please reload the page
+  </p>
+</section>
+`;

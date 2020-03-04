@@ -9,7 +9,8 @@ describe(`reducer works correctly`, () => {
       questions: [],
       isAuthorizationRequired: true,
       user: ``,
-      loading: false
+      loading: false,
+      errorMessage: {}
     });
   });
 

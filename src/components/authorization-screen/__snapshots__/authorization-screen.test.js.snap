@@ -69,7 +69,6 @@ exports[`AuthorizationScreen's snapshot 1`] = `
     </p>
     <button
       className="login__button button"
-      onClick={[Function]}
       type="submit"
     >
       Войти

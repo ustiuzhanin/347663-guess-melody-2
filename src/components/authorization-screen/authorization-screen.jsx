@@ -4,12 +4,6 @@ import PropTypes from "prop-types";
 export default function AuthorizationScreen(props) {
   const {onChange, onSubmit} = props;
 
-  const onBtnCLick = (evt) => {
-    evt.preventDefault();
-
-    // props.history.goBack();
-  };
-
   return (
     <label className="login">
       <div className="login__logo">
@@ -46,11 +40,7 @@ export default function AuthorizationScreen(props) {
           />
           <span className="login__error">Неверный пароль</span>
         </p>
-        <button
-          className="login__button button"
-          type="submit"
-          onClick={(evt) => onBtnCLick(evt)}
-        >
+        <button className="login__button button" type="submit">
           Войти
         </button>
       </form>

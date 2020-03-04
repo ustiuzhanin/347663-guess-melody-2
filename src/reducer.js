@@ -81,6 +81,13 @@ const ActionCreator = {
       type: `LOADING_IN_PROGRESS`,
       payload: status
     };
+  },
+
+  showErrorMessage: (err) => {
+    return {
+      type: `SHOW_ERROR_MESSAGE`,
+      payload: err
+    };
   }
 };
 
@@ -91,7 +98,8 @@ const initialState = {
   questions: [],
   isAuthorizationRequired: true,
   user: ``,
-  loading: false
+  loading: false,
+  errorMessage: {}
 };
 
 const Operations = {
@@ -102,10 +110,12 @@ const Operations = {
       dispatch(ActionCreator.loadingInProgress(false));
     });
   },
-  requestSignUp: (email, password) => (dispatch, _, api) => {
-    return api.post(`/login`, {email, password}).then((response) => {
+  requestSignUp: (email, password) => (dispatch, getState, api) => {
+    api.post(`/login`, {email, password}).then((response) => {
       dispatch(ActionCreator.requestSignUp(response.request.response));
-      dispatch(ActionCreator.requireAuthorization(false));
+      if (response.status === 200) {
+        dispatch(ActionCreator.requireAuthorization(false));
+      }
     });
   }
 };
@@ -145,6 +155,10 @@ const reducer = (state = initialState, action) => {
     case `LOADING_IN_PROGRESS`:
       return Object.assign({}, state, {
         loading: action.payload
+      });
+    case `SHOW_ERROR_MESSAGE`:
+      return Object.assign({}, state, {
+        errorMessage: action.payload
       });
   }
   return state;

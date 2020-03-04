@@ -1,7 +1,8 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {compose} from "recompose";
-import {Switch, Route, Redirect} from "react-router-dom";
+import {Switch, Route, Redirect, withRouter} from "react-router-dom";
+import PrivateRoute from "../with-private-route/with-private-route.jsx";
 
 import ArtistQuestionScreen from "../../components/artist-question-screen/artist-question-screen.jsx";
 import GenreQuestionScreen from "../../components/genre-questionScreen/genre-question-screen.jsx";
@@ -10,6 +11,7 @@ import AuthorizationScreen from "../../components/authorization-screen/authoriza
 import ErrorWidget from "../../components/error-widget/error-widget.jsx";
 import ResultLose from "../../components/result-lose/result-lose.jsx";
 import ResultWin from "../../components/result-win/result-win.jsx";
+import ModalError from "../../components/modal-error/modal-error.jsx";
 
 import withActivePlayer from "../with-active-player/with-active-player.jsx";
 import withUserAnswer from "../with-user-answer/with-user-answer.jsx";
@@ -23,7 +25,9 @@ const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
 const GenreQuestionScreenWrapped = withUserAnswer(
     withActivePlayer(GenreQuestionScreen)
 );
-const AuthorizationScreenWrapped = withUserAuth(AuthorizationScreen);
+const AuthorizationScreenWrapped = withRouter(
+    withUserAuth(AuthorizationScreen)
+);
 
 const withScreenChange = (Component) => {
   class WithScreenChange extends PureComponent {
@@ -57,16 +61,10 @@ const withScreenChange = (Component) => {
         incrementStep,
         time,
         step,
-        loading,
-        isAuthorizationRequired
+        loading
       } = this.props;
 
       const currentQuestion = questions[question];
-
-      if (isAuthorizationRequired) {
-        // return <Redirect to="/auth" />;
-        // return <AuthorizationScreenWrapped />;
-      }
 
       if (step >= questions.length) {
         this.stopTimer();
@@ -133,21 +131,36 @@ const withScreenChange = (Component) => {
     }
 
     render() {
+      const {isAuthorizationRequired, errorMessage} = this.props;
+      const showMessage = Object.entries(errorMessage).length !== 0 && (
+        <ModalError errorMessage={errorMessage} />
+      );
+
       return (
         <Switch>
+          {showMessage}
           <Route
-            path="/"
-            exact
+            path="/auth"
             render={() => (
-              <Component
-                {...this.props}
-                getScreen={(question) => this.getScreen(question)}
-                renderErrors={(errors) => this.renderErrors(errors)}
+              <AuthorizationScreenWrapped
+                isAuthorizationRequired={isAuthorizationRequired}
               />
             )}
           />
-          <Route path="/auth" component={AuthorizationScreenWrapped} />
+          <PrivateRoute
+            path="/"
+            exact
+            isAuthorizationRequired={isAuthorizationRequired}
+          >
+            <Component
+              {...this.props}
+              getScreen={(question) => this.getScreen(question)}
+              renderErrors={(errors) => this.renderErrors(errors)}
+            />
+          </PrivateRoute>
+
           <Route path="/lose" component={ResultLose} />
+
           <Route
             path="/win"
             render={() => (
@@ -180,6 +193,7 @@ const withScreenChange = (Component) => {
     loading: PropTypes.bool.isRequired,
     incrementStep: PropTypes.func.isRequired,
     startTimer: PropTypes.func.isRequired,
+    errorMessage: PropTypes.object.isRequired,
     time: PropTypes.number.isRequired,
     isAuthorizationRequired: PropTypes.bool.isRequired
   };
@@ -194,6 +208,7 @@ const mapStateToProps = (state, ownProps) =>
     time: state.time,
     loading: state.loading,
     questions: state.questions,
+    errorMessage: state.errorMessage,
     isAuthorizationRequired: state.isAuthorizationRequired
   });
 

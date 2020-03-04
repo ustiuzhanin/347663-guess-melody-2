@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {Operations} from "../../reducer";
 import {compose} from "redux";
 import PropTypes from "prop-types";
+import {Redirect} from "react-router-dom";
 
 function withUserAuth(Component) {
   class WithUserAuth extends PureComponent {
@@ -31,31 +32,37 @@ function withUserAuth(Component) {
     onFormSubmit(event) {
       event.preventDefault();
 
+      const {requestSignUp} = this.props;
       const {email, password} = this.state;
-      this.props.requestSignUp(email, password);
+
+      requestSignUp(email, password);
     }
 
     render() {
-      return (
+      const {isAuthorizationRequired} = this.props;
+      return isAuthorizationRequired ? (
         <Component
           {...this.props}
           onChange={(evt) => this.onInputChange(evt)}
           onSubmit={(evt) => this.onFormSubmit(evt)}
         />
+      ) : (
+        <Redirect to="/" />
       );
     }
   }
 
   WithUserAuth.propTypes = {
-    requestSignUp: PropTypes.func.isRequired
+    requestSignUp: PropTypes.func.isRequired,
+    isAuthorizationRequired: PropTypes.bool.isRequired
   };
 
   return WithUserAuth;
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  requestSignUp: (data) => {
-    dispatch(Operations.requestSignUp(data));
+  requestSignUp: (email, password) => {
+    dispatch(Operations.requestSignUp(email, password));
   }
 });
 

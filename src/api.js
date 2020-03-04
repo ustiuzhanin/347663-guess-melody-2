@@ -11,10 +11,7 @@ export default function configueAPI(dispatch) {
   const onSucces = (response) => response;
 
   const onFail = (err) => {
-    if (err.response.status === 403) {
-      dispatch(ActionCreator.requiredAuthorization(true));
-    }
-
+    dispatch(ActionCreator.showErrorMessage(err.response));
     return err;
   };
 
