@@ -6,7 +6,8 @@ import {createStore, applyMiddleware} from "redux";
 import {Provider} from "react-redux";
 import {compose} from "recompose";
 
-import {reducer, Operations} from "./reducer";
+import reducer from "./reducer/index";
+import {Operations} from "./reducer/data/data";
 
 import {settings} from "./mocks/settings";
 import createAPI from "./api";

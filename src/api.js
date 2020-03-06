@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ActionCreator} from "./reducer";
+import {ActionCreator} from "./reducer/errors/errors";
 
 export default function configueAPI(dispatch) {
   const api = axios.create({

@@ -17,7 +17,7 @@ import withActivePlayer from "../with-active-player/with-active-player.jsx";
 import withUserAnswer from "../with-user-answer/with-user-answer.jsx";
 import withUserAuth from "../with-user-auth/with-user-auth.jsx";
 
-import {ActionCreator} from "../../reducer";
+import {ActionCreator} from "../../reducer/game/game";
 
 import PropTypes from "prop-types";
 
@@ -203,13 +203,13 @@ const withScreenChange = (Component) => {
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    step: state.step,
-    errorCount: state.errorCount,
-    time: state.time,
-    loading: state.loading,
-    questions: state.questions,
-    errorMessage: state.errorMessage,
-    isAuthorizationRequired: state.isAuthorizationRequired
+    step: state.game.step,
+    errorCount: state.game.errorCount,
+    time: state.game.time,
+    loading: state.data.loading,
+    questions: state.data.questions,
+    errorMessage: state.errors.errorMessage,
+    isAuthorizationRequired: state.user.isAuthorizationRequired
   });
 
 const mapDispatchToProps = (dispatch) => ({

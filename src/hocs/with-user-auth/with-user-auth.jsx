@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
-import {Operations} from "../../reducer";
+import {Operations} from "../../reducer/user/user";
 import {compose} from "redux";
 import PropTypes from "prop-types";
 import {Redirect} from "react-router-dom";
