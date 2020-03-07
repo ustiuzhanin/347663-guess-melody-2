@@ -1,7 +1,7 @@
 import axios from "axios";
 import {ActionCreator} from "./reducer/errors/errors";
 
-export default function configueAPI(dispatch) {
+export default function createAPI(dispatch) {
   const api = axios.create({
     baseURL: `https://htmlacademy-react-2.appspot.com/guess-melody`,
     timeout: 1000 * 5,
