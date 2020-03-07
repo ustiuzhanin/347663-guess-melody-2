@@ -27,8 +27,6 @@ const ActionCreator = {
 const Operations = {
   requestSignUp: (email, password) => (dispatch, getState, api) => {
     return api.post(`/login`, {email, password}).then((response) => {
-      // eslint-disable-next-line
-      console.log(response);
       dispatch(ActionCreator.requestSignUp(response.data));
       if (response.status === 200) {
         dispatch(ActionCreator.requireAuthorization(false));
