@@ -21,37 +21,37 @@ exports[`Welcome's snapshot 1`] = `
     <span
       className="visually-hidden"
     >
-      Начать игру
+      Play
     </span>
   </button>
   <h2
     className="welcome__rules-title"
   >
-    Правила игры
+    Game Rules
   </h2>
   <p
     className="welcome__text"
   >
-    Правила просты:
+    The rules are simple:
   </p>
   <ul
     className="welcome__rules-list"
   >
     <li>
-      За 
+      You have to answer all the questions in 
       0
-       минут нужно ответить на все вопросы.
+       minutes
     </li>
     <li>
-      Можно допустить 
+      You are allowed to make 
       0
-       ошибки.
+       mistakes.
     </li>
   </ul>
   <p
     className="welcome__text"
   >
-    Удачи!
+    Good Luck!
   </p>
 </section>
 `;

@@ -10,7 +10,7 @@ exports[`ArtistQuestionScreen's shapshot 1`] = `
     <h2
       className="game__title"
     >
-      Кто исполняет эту песню?
+      Who is performing this song?
     </h2>
     <div
       className="game__track"

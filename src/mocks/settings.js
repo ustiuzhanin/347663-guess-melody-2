@@ -1,4 +1,4 @@
 export const settings = {
   gameTime: 5,
-  maxErrors: 3
+  maxErrors: 30
 };

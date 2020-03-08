@@ -7,7 +7,7 @@ test(`ResultWin's snapshot`, () => {
   const tree = renderer
     .create(
         <BrowserRouter>
-          <ResultWin time={10} errors={1} onClick={jest.fn()} />
+          <ResultWin time={10} mistakes={1} points={2} onClick={jest.fn()} />
         </BrowserRouter>
     )
     .toJSON();

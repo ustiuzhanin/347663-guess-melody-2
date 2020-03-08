@@ -8,7 +8,12 @@ Enzyme.configure({adapter: new Adapter()});
 it(`game launch on click`, () => {
   const clickHandler = jest.fn();
   const welcome = shallow(
-      <Welcome onStartButtonClick={clickHandler} loading={false} />
+      <Welcome
+        onStartButtonClick={clickHandler}
+        time={100}
+        errorCount={1}
+        loading={false}
+      />
   );
 
   const welcomeBtn = welcome.find(`.welcome__button`);

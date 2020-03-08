@@ -7,7 +7,7 @@ test(`ResultLose's snapshot`, () => {
   const tree = renderer
     .create(
         <BrowserRouter>
-          <ResultLose />
+          <ResultLose onClick={jest.fn()} time={100} />
         </BrowserRouter>
     )
     .toJSON();

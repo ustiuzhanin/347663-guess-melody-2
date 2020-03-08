@@ -10,10 +10,14 @@ exports[`GenreQuestionScreen's snapshot 1`] = `
     <h2
       className="game__title"
     >
-      Выберите 
-      folk
-       треки
+      Guess the melody
     </h2>
+    <p
+      className="game__text"
+    >
+      Genre: 
+      folk
+    </p>
     <form
       className="game__tracks"
       onSubmit={[Function]}
@@ -36,7 +40,7 @@ exports[`GenreQuestionScreen's snapshot 1`] = `
             className="game__check"
             htmlFor="answer-1"
           >
-            Отметить
+            Select
           </label>
         </div>
       </div>
@@ -58,7 +62,7 @@ exports[`GenreQuestionScreen's snapshot 1`] = `
             className="game__check"
             htmlFor="answer-2"
           >
-            Отметить
+            Select
           </label>
         </div>
       </div>

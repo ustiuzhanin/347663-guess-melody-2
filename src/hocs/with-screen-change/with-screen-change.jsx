@@ -131,7 +131,15 @@ const withScreenChange = (Component) => {
     }
 
     render() {
-      const {isAuthorizationRequired, errorMessage, time} = this.props;
+      const {
+        isAuthorizationRequired,
+        errorMessage,
+        time,
+        questions,
+        errorCount,
+        resetProgress
+      } = this.props;
+
       const showMessage = Object.entries(errorMessage).length !== 0 && (
         <ModalError errorMessage={errorMessage} />
       );
@@ -162,7 +170,7 @@ const withScreenChange = (Component) => {
           <Route
             path="/lose"
             render={() => (
-              <ResultLose time={time > 0} onClick={this.props.resetProgress} />
+              <ResultLose time={time > 0} onClick={resetProgress} />
             )}
           />
 
@@ -170,9 +178,11 @@ const withScreenChange = (Component) => {
             path="/win"
             render={() => (
               <ResultWin
-                time={this.props.time}
-                errors={this.props.errorCount}
-                onClick={this.props.resetProgress}
+                time={time}
+                questionsLength={questions.length}
+                mistakes={errorCount}
+                points={questions.length - errorCount}
+                onClick={resetProgress}
               />
             )}
           />

@@ -17,12 +17,12 @@ exports[`AuthorizationScreen's snapshot 1`] = `
   <h2
     className="login__title"
   >
-    Необходима авторизация
+    Fake authorization required!
   </h2>
   <p
     className="login__text"
   >
-    Представтесь!
+    Please introduce yourself!
   </p>
   <form
     action=""
@@ -37,7 +37,7 @@ exports[`AuthorizationScreen's snapshot 1`] = `
         className="login__label"
         htmlFor="name"
       >
-        Логин
+        Email
       </label>
       <input
         className="login__input"
@@ -53,7 +53,7 @@ exports[`AuthorizationScreen's snapshot 1`] = `
         className="login__label"
         htmlFor="password"
       >
-        Пароль
+        Password
       </label>
       <input
         className="login__input"
@@ -64,14 +64,14 @@ exports[`AuthorizationScreen's snapshot 1`] = `
       <span
         className="login__error"
       >
-        Неверный пароль
+        Wrong Password
       </span>
     </p>
     <button
       className="login__button button"
       type="submit"
     >
-      Войти
+      Sign In
     </button>
   </form>
 </label>

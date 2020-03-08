@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
 export default function ResultLose(props) {
   const {onClick, time} = props;
@@ -28,3 +29,8 @@ export default function ResultLose(props) {
     </section>
   );
 }
+
+ResultLose.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  time: PropTypes.number.isRequired
+};

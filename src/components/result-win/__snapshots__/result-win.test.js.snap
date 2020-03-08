@@ -17,78 +17,28 @@ exports[`ResultWin's snapshot 1`] = `
   <h2
     className="login__title"
   >
-    Вы настоящий меломан!
+    You are an actual music lover!
   </h2>
   <p
     className="login__total"
   >
-    За 
+    For 
     0
-     минуты и 
+     minutes and 
     10
-     секунд вы набрали 12 баллов (8 быстрых), совершив 
+     seconds you\`ve scored
+     
+    2
+     points, and made 
     1
-     ошибки
+     mistakes
   </p>
-  <p
-    className="login__text"
-  >
-    Хотите сравнить свой результат с предыдущими попытками? Представтесь!
-  </p>
-  <form
-    action=""
-    className="login__form"
-  >
-    <p
-      className="login__field"
-    >
-      <label
-        className="login__label"
-        htmlFor="name"
-      >
-        Логин
-      </label>
-      <input
-        className="login__input"
-        id="name"
-        name="name"
-        type="text"
-      />
-    </p>
-    <p
-      className="login__field"
-    >
-      <label
-        className="login__label"
-        htmlFor="password"
-      >
-        Пароль
-      </label>
-      <input
-        className="login__input"
-        id="password"
-        name="password"
-        type="text"
-      />
-      <span
-        className="login__error"
-      >
-        Неверный пароль
-      </span>
-    </p>
-    <button
-      className="login__button button"
-      type="submit"
-    >
-      Войти
-    </button>
-  </form>
   <a
     className="replay"
     href="/"
     onClick={[Function]}
   >
-    Сыграть ещё раз
+    Try Again!
   </a>
 </section>
 `;

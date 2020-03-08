@@ -17,19 +17,21 @@ exports[`ResultLose's snapshot 1`] = `
   <h2
     className="result__title"
   >
-    Какая жалость!
+    Game Over!
   </h2>
   <p
     className="result__total result__total--fail"
   >
-    У вас закончились все попытки. Ничего, повезёт в следующий раз!
+    You have exceeded the number of allowed mistakes!
+    <br />
+    No worries, next time is gonna be better!
   </p>
   <a
     className="replay"
     href="/"
     onClick={[Function]}
   >
-    Попробовать ещё раз
+    Try Again!
   </a>
 </section>
 `;
