@@ -684,7 +684,7 @@ img {
 
 .game__header {
   display: flex;
-  margin-bottom: 210px;
+  margin-bottom: 205px;
   width: 100%;
 }
 
@@ -735,7 +735,7 @@ img {
   font-weight: 300;
   font-size: 33px;
   color: #230d1a;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .game__answer {
@@ -903,6 +903,10 @@ img {
   margin-bottom: 20px;
 }
 
+.game__text {
+  font-size: 20px;
+}
+
 .track__button {
   width: 39px;
   height: 53px;
@@ -1041,7 +1045,7 @@ img {
   font-size: 33px;
   color: #230d1a;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 50px;
 }
 
 .login__total {
@@ -1053,8 +1057,8 @@ img {
   color: #230d1a;
   text-align: center;
   font-size: 20px;
-  margin-top: 30px;
   width: 500px;
+  margin-top: 150px;
 }
 .login__total--fail {
   margin-top: 170px;
@@ -1069,13 +1073,13 @@ img {
   color: #230d1a;
   text-align: center;
   font-size: 20px;
-  margin-top: 70px;
+  margin-top: 10px;
   width: 500px;
 }
 
 .login__form {
   width: 450px;
-  margin-top: 60px;
+  margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -1203,12 +1207,12 @@ img {
   font-size: 33px;
   color: #230d1a;
   text-align: center;
-  font-size: 30px;
+  font-size: 22px;
   margin-top: 130px;
   width: 500px;
 }
 .result__total--fail {
-  margin-top: 170px;
+  margin-top: 150px;
 }
 
 .result__text {

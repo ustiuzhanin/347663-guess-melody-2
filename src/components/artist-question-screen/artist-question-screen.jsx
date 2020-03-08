@@ -8,7 +8,7 @@ export default function ArtistQuestionScreen(props) {
   return (
     <section className="game game--artist">
       <section className="game__screen">
-        <h2 className="game__title">Кто исполняет эту песню?</h2>
+        <h2 className="game__title">Who is performing this song?</h2>
         <div className="game__track">
           <div className="track">{renderPlayer(song, 0)}</div>
         </div>

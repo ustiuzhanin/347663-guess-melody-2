@@ -20,28 +20,20 @@ export default function Welcome(props) {
         <Spinner style={{position: `absolute`, top: `340px`}} />
       ) : (
         <button className="welcome__button" onClick={onStartButtonClick}>
-          <span className="visually-hidden">Начать игру</span>
+          <span className="visually-hidden">Play</span>
         </button>
       )}
 
-      <h2 className="welcome__rules-title">Правила игры</h2>
-      <p className="welcome__text">Правила просты:</p>
+      <h2 className="welcome__rules-title">Game Rules</h2>
+      <p className="welcome__text">The rules are simple:</p>
       <ul className="welcome__rules-list">
-        <li>За {time} минут нужно ответить на все вопросы.</li>
-        <li>Можно допустить {errorCount} ошибки.</li>
+        <li>You have to answer all the questions in {time} minutes</li>
+        <li>You are allowed to make {errorCount} mistakes.</li>
       </ul>
-      <p className="welcome__text">Удачи!</p>
+      <p className="welcome__text">Good Luck!</p>
     </section>
   );
 }
-
-Welcome.defaultProps = {
-  time: 5,
-  errorCount: 3,
-  onStartButtonClick: () => {
-    // TODO: prints an error if onClick wasn't passed
-  }
-};
 
 Welcome.propTypes = {
   time: PropTypes.number.isRequired,

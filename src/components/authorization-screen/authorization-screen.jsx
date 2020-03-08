@@ -14,8 +14,8 @@ export default function AuthorizationScreen(props) {
           height="83"
         />
       </div>
-      <h2 className="login__title">Необходима авторизация</h2>
-      <p className="login__text">Представтесь!</p>
+      <h2 className="login__title">Fake authorization required!</h2>
+      <p className="login__text">Please introduce yourself!</p>
       <form
         className="login__form"
         action=""
@@ -24,13 +24,13 @@ export default function AuthorizationScreen(props) {
       >
         <p className="login__field">
           <label className="login__label" htmlFor="name">
-            Логин
+            Email
           </label>
           <input className="login__input" type="text" name="email" id="name" />
         </p>
         <p className="login__field">
           <label className="login__label" htmlFor="password">
-            Пароль
+            Password
           </label>
           <input
             className="login__input"
@@ -38,10 +38,10 @@ export default function AuthorizationScreen(props) {
             name="password"
             id="password"
           />
-          <span className="login__error">Неверный пароль</span>
+          <span className="login__error">Wrong Password</span>
         </p>
         <button className="login__button button" type="submit">
-          Войти
+          Sign In
         </button>
       </form>
     </label>

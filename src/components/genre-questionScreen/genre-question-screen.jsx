@@ -15,7 +15,8 @@ export default function GenreQuestionScreen(props) {
   return (
     <section className="game game--genre">
       <section className="game__screen">
-        <h2 className="game__title">Выберите {genre} треки</h2>
+        <h2 className="game__title">Guess the melody</h2>
+        <p className="game__text">Genre: {genre}</p>
         <form
           className="game__tracks"
           onSubmit={(evt) => {
@@ -41,7 +42,7 @@ export default function GenreQuestionScreen(props) {
                     }}
                   />
                   <label className="game__check" htmlFor={`answer-${i + 1}`}>
-                    Отметить
+                    Select
                   </label>
                 </div>
               </div>

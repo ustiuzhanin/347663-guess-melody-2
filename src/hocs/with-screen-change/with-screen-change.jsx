@@ -73,8 +73,8 @@ const withScreenChange = (Component) => {
       }
 
       if (errorCount >= maxErrors || time <= 0) {
-        resetProgress();
         this.stopTimer();
+
         return <Redirect to="/lose" />;
       }
 
@@ -131,7 +131,7 @@ const withScreenChange = (Component) => {
     }
 
     render() {
-      const {isAuthorizationRequired, errorMessage} = this.props;
+      const {isAuthorizationRequired, errorMessage, time} = this.props;
       const showMessage = Object.entries(errorMessage).length !== 0 && (
         <ModalError errorMessage={errorMessage} />
       );
@@ -159,7 +159,12 @@ const withScreenChange = (Component) => {
             />
           </PrivateRoute>
 
-          <Route path="/lose" component={ResultLose} />
+          <Route
+            path="/lose"
+            render={() => (
+              <ResultLose time={time > 0} onClick={this.props.resetProgress} />
+            )}
+          />
 
           <Route
             path="/win"

@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 
 export default function ResultWin(props) {
   const {time, errors, onClick} = props;
-  const hour = Math.floor(time / 60);
-  const minutes = time % 60;
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
   return (
     <section className="login">
       <div className="login__logo">
@@ -16,39 +16,13 @@ export default function ResultWin(props) {
           height="83"
         />
       </div>
-      <h2 className="login__title">Вы настоящий меломан!</h2>
+      <h2 className="login__title">You are an actual music lover!</h2>
       <p className="login__total">
-        За {hour} минуты и {minutes} секунд вы набрали 12 баллов (8 быстрых),
-        совершив {errors} ошибки
+        For {minutes} minutes and {seconds} seconds you`ve scored 12 points, and
+        made {errors} mistakes
       </p>
-      <p className="login__text">
-        Хотите сравнить свой результат с предыдущими попытками? Представтесь!
-      </p>
-      <form className="login__form" action="">
-        <p className="login__field">
-          <label className="login__label" htmlFor="name">
-            Логин
-          </label>
-          <input className="login__input" type="text" name="name" id="name" />
-        </p>
-        <p className="login__field">
-          <label className="login__label" htmlFor="password">
-            Пароль
-          </label>
-          <input
-            className="login__input"
-            type="text"
-            name="password"
-            id="password"
-          />
-          <span className="login__error">Неверный пароль</span>
-        </p>
-        <button className="login__button button" type="submit">
-          Войти
-        </button>
-      </form>
       <Link to="/" onClick={onClick} className="replay">
-        Сыграть ещё раз
+        Try Again!
       </Link>
     </section>
   );

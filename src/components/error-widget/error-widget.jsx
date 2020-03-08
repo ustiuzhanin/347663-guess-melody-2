@@ -1,5 +1,5 @@
-import React from 'react';
+import React from "react";
 
 export default function ErrorWidget() {
-  return <div className='wrong' />;
+  return <div className="wrong" />;
 }
